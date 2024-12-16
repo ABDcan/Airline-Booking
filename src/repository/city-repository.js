@@ -1,3 +1,4 @@
+const city = require('../models/city');
 const {City} = require('../models/index');
 
 class CityRepository{
@@ -52,6 +53,15 @@ class CityRepository{
             throw {error};
         }   
     }
-}
+    async getAllCities(){
+        try {
+            const cities= City.findAll();
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+            throw {error};
+        }
+    }
+}   
 
 module.exports = CityRepository;
