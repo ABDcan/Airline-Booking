@@ -59,3 +59,4 @@ To add the seed file we can use the following command
 
 To see the data in the console we can use the following command 
 ```npx sequelize db:seed:all```
+
