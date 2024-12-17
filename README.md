@@ -54,3 +54,8 @@
 
 ```npx sequelize model:generate --name Airport --attributes name:String,address:String,cityId:integer```
 
+To add the seed file we can use the following command
+```npx sequelize seed:generate --name add-cities```
+
+To see the data in the console we can use the following command 
+```npx sequelize db:seed:all```

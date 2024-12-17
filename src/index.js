@@ -5,6 +5,7 @@ const ApiRoutes = require('./routes/index')
 // const db = require('./models/index');
 const {City,Airport} = require('./models/index');
 const airport = require('./models/airport');
+const {Airplane} = require('./models/index');
 const sequelize = require('sequelize');
 const setupAndStartServer = async() =>{
 //  create the express object
@@ -14,6 +15,10 @@ const setupAndStartServer = async() =>{
   app.use('/api',ApiRoutes);
   app.listen(3000, async ()=>{
     console.log(`server started at ${PORT}`);
+    await Airplane.create({
+    modelNumber:'Bambardier',
+        capacity:200
+    })
 });
   
 }
