@@ -1,3 +1,4 @@
+const airplane = require('../models/airplane');
 const {FlightService} = require('../services/index');
 
 const flightService = new FlightService();
@@ -23,7 +24,17 @@ const create = async (req,res) => {
 }
 const getAll  = async(req,res) => {
     try {
-        const flights = await flightService.getAllFlightData(req.query);
+        let FlightRequestData = {
+            flightNumber:req.query.flightNumber,
+            boardingGate:req.query.boardingGate,
+            departureAirportId:req.query.departureAirportId,
+            price:req.query.price,
+            arrivalAirportId:req.query.arrivalAirportId,
+            arrivalTime:req.query.arrivalTime,
+            departureTime:req.query.departureTime,
+            airplaneId:req.query.airplaneId,
+        }
+        const flights = await flightService.getAllFlightData(FlightRequestData);
         return res.status(200).json({
             data:flights,
             success:true,
