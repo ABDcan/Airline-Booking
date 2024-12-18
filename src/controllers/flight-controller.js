@@ -1,12 +1,14 @@
 const airplane = require('../models/airplane');
 const {FlightService} = require('../services/index');
 
+const {SuccessCodes,ClientErrorCodes} = require('../utils/error-codes');
+
 const flightService = new FlightService();
 const create = async (req,res) => {
     try {
         const flight = await flightService.createFlight(req.body);
         console.log(flight);
-        return res.status(201).json({
+        return res.status(SuccessCodes.CREATED).json({
             data:flight,
             success:true,
             message:'Successfully created a flight',
@@ -14,7 +16,7 @@ const create = async (req,res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ClientErrorCodes.BAD_REQUEST).json({
             data:{},
             success:false,
             message:'Not able to create a flight',
@@ -35,7 +37,7 @@ const getAll  = async(req,res) => {
             airplaneId:req.query.airplaneId,
         }
         const flights = await flightService.getAllFlightData(FlightRequestData);
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data:flights,
             success:true,
             message:'Successfully fetched the flights',
@@ -43,7 +45,7 @@ const getAll  = async(req,res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ClientErrorCodes.BAD_REQUEST).json({
             data:{},
             success:false,
             message:'Not able to fetch the flights',
